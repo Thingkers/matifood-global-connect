@@ -78,15 +78,15 @@ function Index() {
           <div>
             <Eyebrow>Flagship Brand</Eyebrow>
             <h2 className="mt-4 font-serif text-4xl font-bold leading-tight sm:text-5xl">
-              MatiFood — <span className="text-primary">Soil to Soul</span>
+              MatiFood — <span className="text-primary">Taste Real Luxury</span>
             </h2>
             <p className="mt-5 text-lg text-foreground/80">
-              MatiFood is the flagship brand of NISIL Agro. Born of the rich soil of Bangladesh, every fruit,
-              vegetable, juice and pulp under the MatiFood label is curated to carry the essence of the land
-              to households and corporate clients across the globe.
+              MatiFood is the flagship brand of NISIL Agro. Built on safety, transparency and quality,
+              every fruit, vegetable, juice and pulp under the MatiFood label travels the safest path
+              from farm to table — for customers who don't compromise.
             </p>
             <div className="mt-8 flex items-center gap-4">
-              <img src={logo} alt="NISIL Agro emblem" className="h-16 w-16 rounded-full bg-card object-cover shadow-[var(--shadow-soft)]" />
+              <img src={logo} alt="MatiFood logo" className="h-16 w-16 rounded-xl bg-primary object-contain p-1 shadow-[var(--shadow-soft)]" />
               <Link to="/matifood" className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-glow">
                 Discover the brand <ArrowRight className="h-4 w-4" />
               </Link>

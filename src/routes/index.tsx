@@ -21,6 +21,17 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <>
+      {/* MATIFOOD ANNOUNCEMENT STRIP */}
+      <Link to="/matifood" className="block bg-primary text-primary-foreground transition hover:bg-primary-glow">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-3 px-4 py-2.5 text-center text-sm sm:px-6 lg:px-8">
+          <img src={logo} alt="" className="h-6 w-6 rounded bg-primary-foreground/10 object-contain p-0.5" />
+          <span className="font-semibold tracking-wide">Introducing MatiFood</span>
+          <span className="hidden text-primary-foreground/70 sm:inline">·</span>
+          <span className="font-serif italic text-accent">Taste Real Luxury</span>
+          <ArrowRight className="h-4 w-4" />
+        </div>
+      </Link>
+
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
         <img src={hero} alt="Lush orchards in Bangladesh" className="absolute inset-0 h-full w-full object-cover" width={1920} height={1080} />

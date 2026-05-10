@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { ShieldCheck, Building2, Home, Globe } from "lucide-react";
-import fresh from "@/assets/fresh-produce.jpg";
-import processed from "@/assets/processed-products.jpg";
+import banner from "@/assets/matifood-banner.png";
+import p1 from "@/assets/p1.png";
+import p2 from "@/assets/p2.png";
+import p3 from "@/assets/p3.png";
 import logo from "@/assets/matifood-logo.png";
 
 export const Route = createFileRoute("/matifood")({

@@ -6,7 +6,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About NISIL Agro — Our Foundation & Leadership" },
-      { name: "description", content: "Founded January 1, 2026, NISIL Agro is a general partnership scaling agricultural operations through expert collaboration." },
+      { name: "description", content: "Founded January 1, 2016, NISIL Agro is a general partnership scaling agricultural operations through expert collaboration." },
       { property: "og:title", content: "About NISIL Agro" },
       { property: "og:description", content: "Founders, mission, and the foundation behind NISIL Agro and MatiFood." },
     ],
@@ -28,7 +28,7 @@ function About() {
           <Eyebrow>About NISIL Agro</Eyebrow>
           <h1 className="mt-4 font-serif text-5xl font-bold leading-tight">The foundation behind every harvest.</h1>
           <p className="mt-6 text-lg text-muted-foreground">
-            Founded on January 1, 2026, NISIL Agro was established to scale agricultural operations through
+            Founded on January 1, 2016, NISIL Agro was established to scale agricultural operations through
             expert partnership — built on trust, professional rigor and a deep connection to the soil of Bangladesh.
           </p>
         </div>

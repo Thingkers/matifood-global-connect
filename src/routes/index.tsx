@@ -38,7 +38,7 @@ function Index() {
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <div className="relative mx-auto flex min-h-[88vh] max-w-7xl flex-col items-start justify-center px-4 py-24 text-primary-foreground sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest backdrop-blur">
-            <Leaf className="h-3.5 w-3.5" /> NISIL Agro · Est. 2026
+            <Leaf className="h-3.5 w-3.5" /> NISIL Agro · Est. 2016
           </span>
           <h1 className="mt-6 max-w-3xl font-serif text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
             Bringing the Bounty of Bangladesh to the World.

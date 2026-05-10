@@ -36,6 +36,39 @@ function MatiFood() {
         </div>
       </section>
 
+      {/* MISSION */}
+      <Section>
+        <div className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Our Mission</Eyebrow>
+          <p className="mt-6 font-serif text-2xl italic leading-relaxed text-foreground sm:text-3xl">
+            “Provide the safest path from farm to table, utilizing rigorous standards to deliver the
+            most pristine food products for customers who don't want to compromise.”
+          </p>
+        </div>
+      </Section>
+
+      {/* VALUES — Venn diagram */}
+      <section className="bg-secondary/60">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <Eyebrow>Our Values</Eyebrow>
+            <h2 className="mt-4 font-serif text-4xl font-bold">Safety. Transparency. Quality.</h2>
+            <p className="mt-4 text-muted-foreground">Three principles that overlap in everything we deliver.</p>
+          </div>
+          <div className="mt-14 flex justify-center">
+            <svg viewBox="0 0 520 420" className="h-auto w-full max-w-2xl" role="img" aria-label="MatiFood values: Safety, Transparency, Quality">
+              <circle cx="190" cy="170" r="140" fill="oklch(0.30 0.055 158 / 0.55)" />
+              <circle cx="330" cy="170" r="140" fill="oklch(0.93 0.13 130 / 0.55)" />
+              <circle cx="260" cy="280" r="140" fill="oklch(0.91 0.055 175 / 0.65)" />
+              <text x="135" y="120" textAnchor="middle" className="fill-primary-foreground" style={{ fontFamily: "var(--font-serif)", fontSize: 24, fontWeight: 700 }}>Safety</text>
+              <text x="385" y="120" textAnchor="middle" className="fill-foreground" style={{ fontFamily: "var(--font-serif)", fontSize: 24, fontWeight: 700 }}>Transparency</text>
+              <text x="260" y="370" textAnchor="middle" className="fill-foreground" style={{ fontFamily: "var(--font-serif)", fontSize: 24, fontWeight: 700 }}>Quality</text>
+              <text x="260" y="220" textAnchor="middle" className="fill-primary-foreground" style={{ fontFamily: "var(--font-serif)", fontSize: 14, fontWeight: 600, letterSpacing: 2 }}>MATIFOOD</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
       <Section>
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Product Categories</Eyebrow>

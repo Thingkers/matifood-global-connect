@@ -3,7 +3,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { ShieldCheck, Building2, Home, Globe } from "lucide-react";
 import fresh from "@/assets/fresh-produce.jpg";
 import processed from "@/assets/processed-products.jpg";
-import logo from "@/assets/nisil-logo.png";
+import logo from "@/assets/matifood-logo.png";
 
 export const Route = createFileRoute("/matifood")({
   head: () => ({
@@ -26,13 +26,13 @@ function MatiFood() {
           <div>
             <Eyebrow>Featured Brand</Eyebrow>
             <h1 className="mt-4 font-serif text-5xl font-bold leading-tight sm:text-6xl">MatiFood</h1>
-            <p className="mt-3 font-serif text-2xl italic text-accent">Soil to Soul.</p>
+            <p className="mt-3 font-serif text-2xl italic text-accent">Taste Real Luxury.</p>
             <p className="mt-6 max-w-2xl text-lg text-primary-foreground/85">
-              Locally sourced, export-quality produce and processed goods — directly from the heart of
-              Rangpur and beyond. Trusted by households and corporate buyers alike.
+              The safest path from farm to table — rigorous standards, pristine produce, and a
+              promise to customers who don't compromise. <span className="italic">Food safety is the new luxury.</span>
             </p>
           </div>
-          <img src={logo} alt="MatiFood emblem" className="h-40 w-40 rounded-full bg-card p-2 shadow-[var(--shadow-glow)]" />
+          <img src={logo} alt="MatiFood logo" className="h-44 w-44 rounded-2xl object-contain shadow-[var(--shadow-glow)]" />
         </div>
       </section>
 

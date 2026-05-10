@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -66,27 +68,28 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.985 0.01 110);
-  --foreground: oklch(0.22 0.04 145);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.04 145);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.04 145);
-  --primary: oklch(0.42 0.12 145);
-  --primary-foreground: oklch(0.985 0.01 110);
-  --primary-glow: oklch(0.62 0.16 145);
-  --secondary: oklch(0.94 0.03 100);
-  --secondary-foreground: oklch(0.28 0.06 145);
-  --muted: oklch(0.95 0.015 110);
-  --muted-foreground: oklch(0.45 0.03 145);
-  --accent: oklch(0.78 0.14 75);
-  --accent-foreground: oklch(0.22 0.04 145);
-  --earth: oklch(0.55 0.08 60);
-  --cream: oklch(0.97 0.025 90);
-  --gradient-hero: linear-gradient(135deg, oklch(0.42 0.12 145 / 0.92), oklch(0.22 0.04 145 / 0.85));
+  /* Mati Foods brand: Ivory bg, Coffee Bean fg, Deep Forest primary, Dark Emerald glow, Tea Green accent, Pearl Aqua earth */
+  --background: oklch(0.975 0.018 95);
+  --foreground: oklch(0.22 0.035 25);
+  --card: oklch(0.985 0.012 95);
+  --card-foreground: oklch(0.22 0.035 25);
+  --popover: oklch(0.985 0.012 95);
+  --popover-foreground: oklch(0.22 0.035 25);
+  --primary: oklch(0.30 0.055 158);
+  --primary-foreground: oklch(0.97 0.025 95);
+  --primary-glow: oklch(0.45 0.085 160);
+  --secondary: oklch(0.93 0.04 155);
+  --secondary-foreground: oklch(0.30 0.055 158);
+  --muted: oklch(0.94 0.02 110);
+  --muted-foreground: oklch(0.42 0.04 30);
+  --accent: oklch(0.93 0.13 130);
+  --accent-foreground: oklch(0.22 0.035 25);
+  --earth: oklch(0.91 0.055 175);
+  --cream: oklch(0.975 0.018 95);
+  --gradient-hero: linear-gradient(135deg, oklch(0.30 0.055 158 / 0.92), oklch(0.18 0.035 25 / 0.85));
   --gradient-leaf: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  --shadow-soft: 0 10px 30px -10px oklch(0.22 0.04 145 / 0.2);
-  --shadow-glow: 0 0 60px oklch(0.62 0.16 145 / 0.3);
+  --shadow-soft: 0 10px 30px -10px oklch(0.22 0.035 25 / 0.18);
+  --shadow-glow: 0 0 60px oklch(0.93 0.13 130 / 0.45);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
@@ -150,5 +153,10 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-serif);
   }
 }

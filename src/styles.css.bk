@@ -1,6 +1,5 @@
-@import "tailwindcss";
-/* Tell Tailwind to scan all files in the current directory and subdirectories */
-@source "./**/*.{ts,tsx,js,jsx}";
+@import "tailwindcss" source(none);
+@source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));

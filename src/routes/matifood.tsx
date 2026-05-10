@@ -14,7 +14,7 @@ export const Route = createFileRoute("/matifood")({
       { name: "description", content: "MatiFood, the flagship brand of NISIL Agro, delivers export-quality fresh fruits, vegetables, juices and pulps from Rangpur." },
       { property: "og:title", content: "MatiFood — Soil to Soul" },
       { property: "og:description", content: "Premium fresh and processed agricultural products from Bangladesh." },
-      { property: "og:image", content: fresh },
+      { property: "og:image", content: banner },
     ],
   }),
   component: MatiFood,
@@ -23,8 +23,10 @@ export const Route = createFileRoute("/matifood")({
 function MatiFood() {
   return (
     <>
-      <section className="relative overflow-hidden bg-primary text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
+      <section className="relative isolate overflow-hidden bg-primary text-primary-foreground">
+        <img src={banner} alt="MatiFood orchards, harvest and produce" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, oklch(0.30 0.055 158 / 0.85), oklch(0.18 0.035 25 / 0.75))" }} />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
           <div>
             <Eyebrow>Featured Brand</Eyebrow>
             <h1 className="mt-4 font-serif text-5xl font-bold leading-tight sm:text-6xl">MatiFood</h1>
@@ -34,7 +36,7 @@ function MatiFood() {
               promise to customers who don't compromise. <span className="italic">Food safety is the new luxury.</span>
             </p>
           </div>
-          <img src={logo} alt="MatiFood logo" className="h-44 w-44 rounded-2xl object-contain shadow-[var(--shadow-glow)]" />
+          <img src={logo} alt="MatiFood logo" className="h-44 w-44 rounded-2xl bg-primary-foreground/10 object-contain p-3 shadow-[var(--shadow-glow)] backdrop-blur" />
         </div>
       </section>
 
@@ -73,30 +75,25 @@ function MatiFood() {
 
       <Section>
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Product Categories</Eyebrow>
+          <Eyebrow>Our Products</Eyebrow>
           <h2 className="mt-4 font-serif text-4xl font-bold">From the field, to the factory, to you.</h2>
         </div>
-        <div className="mt-14 grid gap-8 lg:grid-cols-2">
-          <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)]">
-            <img src={fresh} alt="Fresh fruits and vegetables" loading="lazy" width={1280} height={800} className="h-72 w-full object-cover" />
-            <div className="p-8">
-              <h3 className="font-serif text-2xl font-bold">Fresh Fruits & Vegetables</h3>
-              <p className="mt-3 text-muted-foreground">
-                Locally sourced, export-quality produce directly from the heart of Rangpur and beyond —
-                including mangoes, jackfruit, leafy greens and seasonal specialties.
-              </p>
-            </div>
-          </article>
-          <article className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)]">
-            <img src={processed} alt="Processed juices and pulps" loading="lazy" width={1280} height={800} className="h-72 w-full object-cover" />
-            <div className="p-8">
-              <h3 className="font-serif text-2xl font-bold">Processed Products</h3>
-              <p className="mt-3 text-muted-foreground">
-                High-quality juices, pulps and dried variants of fruits and vegetables, prepared to
-                international standards in modern agri-processing facilities.
-              </p>
-            </div>
-          </article>
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { img: p1, title: "Fruit Pulp", desc: "Premium fresh mango pulp, bottled to preserve orchard-fresh flavour." },
+            { img: p2, title: "Dried Fruit", desc: "Sun-kissed mango slices — naturally sweet, no compromises." },
+            { img: p3, title: "Cardboard Packaging", desc: "Bulk-ready, export-grade packaging built for international shipments." },
+          ].map((p) => (
+            <article key={p.title} className="overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition hover:-translate-y-1">
+              <div className="flex h-72 items-center justify-center bg-secondary/40 p-6">
+                <img src={p.img} alt={p.title} loading="lazy" className="h-full w-auto object-contain" />
+              </div>
+              <div className="p-8">
+                <h3 className="font-serif text-2xl font-bold">{p.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </Section>
 

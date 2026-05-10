@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe2, Truck, Factory, Sprout, ArrowRight, Leaf } from "lucide-react";
 import hero from "@/assets/hero-orchard.jpg";
 import processing from "@/assets/processing.jpg";
-import logo from "@/assets/nisil-logo.png";
+import logo from "@/assets/matifood-logo.png";
 import { Section, Eyebrow } from "@/components/Section";
 
 export const Route = createFileRoute("/")({

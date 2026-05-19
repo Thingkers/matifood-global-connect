@@ -8,6 +8,7 @@ export const orderInputSchema = z.object({
   phone: z.string().trim().min(5).max(40),
   email: z.string().trim().email().max(200).optional().or(z.literal("")),
   area: z.enum(["Dhaka", "Chattogram"]),
+  location_id: z.string().trim().max(200).optional().or(z.literal("")),
   delivery_address: z.string().trim().min(3).max(500),
   product: z.string().trim().min(1).max(200),
   quantity: z.number().int().min(1).max(50),

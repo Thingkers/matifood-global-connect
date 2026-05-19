@@ -74,7 +74,7 @@ function MatiFood() {
       </section>
 
       <Section>
-        <div className="mx-auto max-w-2xl text-center">
+        <div id="products" className="mx-auto max-w-2xl text-center">
           <Eyebrow>Our Products</Eyebrow>
           <h2 className="mt-4 font-serif text-4xl font-bold">From the field, to the factory, to you.</h2>
         </div>

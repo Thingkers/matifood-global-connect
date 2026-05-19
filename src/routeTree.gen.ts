@@ -9,18 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ProductsRouteImport } from './routes/products'
 import { Route as OperationsRouteImport } from './routes/operations'
 import { Route as MatifoodRouteImport } from './routes/matifood'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MatifoodProductsRouteImport } from './routes/matifood_.products'
 
-const ProductsRoute = ProductsRouteImport.update({
-  id: '/products',
-  path: '/products',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const OperationsRoute = OperationsRouteImport.update({
   id: '/operations',
   path: '/operations',
@@ -46,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MatifoodProductsRoute = MatifoodProductsRouteImport.update({
+  id: '/matifood_/products',
+  path: '/matifood/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +53,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/matifood': typeof MatifoodRoute
   '/operations': typeof OperationsRoute
-  '/products': typeof ProductsRoute
+  '/matifood/products': typeof MatifoodProductsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +61,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/matifood': typeof MatifoodRoute
   '/operations': typeof OperationsRoute
-  '/products': typeof ProductsRoute
+  '/matifood/products': typeof MatifoodProductsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,7 +70,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/matifood': typeof MatifoodRoute
   '/operations': typeof OperationsRoute
-  '/products': typeof ProductsRoute
+  '/matifood_/products': typeof MatifoodProductsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -80,9 +80,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/matifood'
     | '/operations'
-    | '/products'
+    | '/matifood/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/matifood' | '/operations' | '/products'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/matifood'
+    | '/operations'
+    | '/matifood/products'
   id:
     | '__root__'
     | '/'
@@ -90,7 +96,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/matifood'
     | '/operations'
-    | '/products'
+    | '/matifood_/products'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -99,18 +105,11 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   MatifoodRoute: typeof MatifoodRoute
   OperationsRoute: typeof OperationsRoute
-  ProductsRoute: typeof ProductsRoute
+  MatifoodProductsRoute: typeof MatifoodProductsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/products': {
-      id: '/products'
-      path: '/products'
-      fullPath: '/products'
-      preLoaderRoute: typeof ProductsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/operations': {
       id: '/operations'
       path: '/operations'
@@ -146,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/matifood_/products': {
+      id: '/matifood_/products'
+      path: '/matifood/products'
+      fullPath: '/matifood/products'
+      preLoaderRoute: typeof MatifoodProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -155,7 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   MatifoodRoute: MatifoodRoute,
   OperationsRoute: OperationsRoute,
-  ProductsRoute: ProductsRoute,
+  MatifoodProductsRoute: MatifoodProductsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

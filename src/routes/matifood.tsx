@@ -74,9 +74,14 @@ function MatiFood() {
       </section>
 
       <Section>
-        <div id="products" className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Our Products</Eyebrow>
           <h2 className="mt-4 font-serif text-4xl font-bold">From the field, to the factory, to you.</h2>
+          <div className="mt-6">
+            <Link to="/matifood/products" className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-soft)] transition hover:brightness-110">
+              View live catalogue & order
+            </Link>
+          </div>
         </div>
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[

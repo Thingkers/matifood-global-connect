@@ -28,7 +28,7 @@ function MatiFood() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, oklch(0.30 0.055 158 / 0.85), oklch(0.18 0.035 25 / 0.75))" }} />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
           <div>
-            <Eyebrow>Featured Brand</Eyrow>
+            <Eyebrow>Featured Brand</Eyebrow>
             <h1 className="mt-4 font-serif text-5xl font-bold leading-tight sm:text-6xl">MatiFood</h1>
             <p className="mt-3 font-serif text-2xl italic text-accent">Taste Real Luxury.</p>
             <p className="mt-6 max-w-2xl text-lg text-primary-foreground/85">

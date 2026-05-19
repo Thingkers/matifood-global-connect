@@ -28,13 +28,18 @@ function MatiFood() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, oklch(0.30 0.055 158 / 0.85), oklch(0.18 0.035 25 / 0.75))" }} />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
           <div>
-            <Eyebrow>Featured Brand</Eyebrow>
+            <Eyebrow>Featured Brand</Eyrow>
             <h1 className="mt-4 font-serif text-5xl font-bold leading-tight sm:text-6xl">MatiFood</h1>
             <p className="mt-3 font-serif text-2xl italic text-accent">Taste Real Luxury.</p>
             <p className="mt-6 max-w-2xl text-lg text-primary-foreground/85">
               The safest path from farm to table — rigorous standards, pristine produce, and a
               promise to customers who don't compromise. <span className="italic">Food safety is the new luxury.</span>
             </p>
+            <div className="mt-6">
+              <Link to="/matifood/products" className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-[var(--shadow-soft)] transition hover:brightness-110">
+                View live catalogue & order
+              </Link>
+            </div>
           </div>
           <img src={logo} alt="MatiFood logo" className="h-44 w-44 rounded-2xl bg-primary-foreground/10 object-contain p-3 shadow-[var(--shadow-glow)] backdrop-blur" />
         </div>

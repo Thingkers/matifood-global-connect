@@ -14,6 +14,7 @@ import { Route as MatifoodRouteImport } from './routes/matifood'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MatifoodProductsRouteImport } from './routes/matifood_.products'
 
 const OperationsRoute = OperationsRouteImport.update({
   id: '/operations',
@@ -40,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MatifoodProductsRoute = MatifoodProductsRouteImport.update({
+  id: '/matifood_/products',
+  path: '/matifood/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/matifood': typeof MatifoodRoute
   '/operations': typeof OperationsRoute
+  '/matifood/products': typeof MatifoodProductsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/matifood': typeof MatifoodRoute
   '/operations': typeof OperationsRoute
+  '/matifood/products': typeof MatifoodProductsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/matifood': typeof MatifoodRoute
   '/operations': typeof OperationsRoute
+  '/matifood_/products': typeof MatifoodProductsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/matifood' | '/operations'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/matifood'
+    | '/operations'
+    | '/matifood/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/matifood' | '/operations'
-  id: '__root__' | '/' | '/about' | '/contact' | '/matifood' | '/operations'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/matifood'
+    | '/operations'
+    | '/matifood/products'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/matifood'
+    | '/operations'
+    | '/matifood_/products'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +105,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   MatifoodRoute: typeof MatifoodRoute
   OperationsRoute: typeof OperationsRoute
+  MatifoodProductsRoute: typeof MatifoodProductsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/matifood_/products': {
+      id: '/matifood_/products'
+      path: '/matifood/products'
+      fullPath: '/matifood/products'
+      preLoaderRoute: typeof MatifoodProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   MatifoodRoute: MatifoodRoute,
   OperationsRoute: OperationsRoute,
+  MatifoodProductsRoute: MatifoodProductsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

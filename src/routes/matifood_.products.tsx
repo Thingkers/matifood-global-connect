@@ -109,16 +109,24 @@ function OrderForm() {
 
   const set = <K extends keyof OrderInput>(k: K, v: OrderInput[K]) => setForm((f) => ({ ...f, [k]: v }));
 
-  // keep location_id in sync when area changes
+  // keep area in sync with selected location; pick a sensible default when locations load
   useEffect(() => {
     if (!locations) return;
-    const matching = locations.find((l: Location) => l.area === form.area && l.id === form.location_id);
-    if (!matching) {
-      const first = locations.find((l: Location) => l.area === form.area);
-      set("location_id", first ? first.id : "");
+    // if no location selected, pick the first available
+    if (!form.location_id) {
+      const first = locations[0];
+      if (first) {
+        set("location_id", first.id as OrderInput['location_id']);
+        set("area", first.area as OrderInput['area']);
+      }
+      return;
+    }
+    const sel = locations.find((l: Location) => l.id === form.location_id);
+    if (sel) {
+      set("area", sel.area as OrderInput['area']);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form.area, locations]);
+  }, [form.location_id, locations]);
 
   const selected = MENU.find((m) => m.label === form.product);
   const total = (selected?.price ?? 0) * form.quantity;
@@ -159,32 +167,27 @@ function OrderForm() {
             </Field>
           </fieldset>
 
-          {/* Area */}
+          {/* Location (select drives the Area) */}
           <fieldset className="space-y-3">
-            <legend className="font-serif text-lg font-bold">📍 Area *</legend>
-            {(["Dhaka", "Chattogram"] as const).map((a) => (
-              <label key={a} className="flex cursor-pointer items-center gap-3 rounded-md border border-border p-3 hover:bg-secondary/60">
-                <input type="radio" name="area" value={a} checked={form.area === a} onChange={() => set("area", a)} />
-                <span>{a === "Dhaka" ? "Dhaka | ঢাকা" : "Chattogram | চট্টগ্রাম"}</span>
-              </label>
-            ))}
+            <legend className="font-serif text-lg font-bold">📍 Location *</legend>
 
-            {/* Location select (depends on chosen area) */}
             <Field label="Location *">
               {locations ? (
                 <select required value={form.location_id} onChange={(e) => set("location_id", e.target.value)} className={inputCls}>
                   <option value="">Select location</option>
-                  {locations
-                    .filter((l: Location) => l.area === form.area)
-                    .map((l: Location) => (
-                      <option key={l.id} value={l.id}>
-                        {l.name}
-                      </option>
-                    ))}
+                  {locations.map((l: Location) => (
+                    <option key={l.id} value={l.id}>
+                      {l.area} — {l.name}
+                    </option>
+                  ))}
                 </select>
               ) : (
                 <p className="text-sm text-muted-foreground">Loading locations…</p>
               )}
+            </Field>
+
+            <Field label="Area">
+              <input readOnly value={locations?.find((l: Location) => l.id === form.location_id)?.area ?? ""} className={inputCls} />
             </Field>
 
             <Field label="Delivery address *">

@@ -40,7 +40,7 @@ function AdminPage() {
       setAuthed(false);
       return;
     }
-    setOrders(res.orders);
+    setOrders(Array.isArray(res.orders) ? res.orders : []);
     setAuthed(true);
   }
 

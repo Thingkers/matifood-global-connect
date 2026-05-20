@@ -40,12 +40,12 @@ function AdminPage() {
       setAuthed(false);
       return;
     }
-    setOrders(res.orders);
+    setOrders(Array.isArray(res.orders) ? res.orders : []);
     setAuthed(true);
   }
 
   const productOptions = useMemo(
-    () => Array.from(new Set(orders.map((o) => o.product))).sort(),
+    () => Array.from(new Set((orders ?? []).map((o) => o.product))).sort(),
     [orders],
   );
 

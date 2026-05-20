@@ -45,7 +45,7 @@ function AdminPage() {
   }
 
   const productOptions = useMemo(
-    () => Array.from(new Set(orders.map((o) => o.product))).sort(),
+    () => Array.from(new Set((orders ?? []).map((o) => o.product))).sort(),
     [orders],
   );
 

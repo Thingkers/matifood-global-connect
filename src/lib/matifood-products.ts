@@ -3,4 +3,5 @@ export type Product = {
   product_name: string;
   price: number;
   created_at: string | null;
+  mage_url: string | null;
 };

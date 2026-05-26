@@ -1,0 +1,38 @@
+// /Volumes/THINGKERS/developments/matifood-global-connect/src/lib/products-admin.functions.ts
+const ENDPOINT = "https://nisilagro.com/add_product.php";
+
+export interface NewProductPayload {
+  product_name: string;
+  price: number;
+  image_url: string;
+}
+
+export async function addProductDirect(payload: NewProductPayload): Promise<{ ok: boolean; id?: number; error: string | null }> {
+  const apiKey = import.meta.env.VITE_MATIFOOD_API_KEY || "matifood2026-sah";
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        "X-API-Key": apiKey,
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      return { ok: false, error: `Server pipeline returned structural error code: ${res.status}` };
+    }
+
+    const json = await res.json();
+    if (!json.ok) {
+      return { ok: false, error: json.error ?? "Failed to insert product record into database." };
+    }
+
+    return { ok: true, id: json.id, error: null };
+  } catch (e: any) {
+    console.error("addProductDirect caught network runtime crash:", e);
+    return { ok: false, error: e?.message || "Failed to reach remote Hostinger endpoint script." };
+  }
+}

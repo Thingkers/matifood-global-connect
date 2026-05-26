@@ -16,4 +16,25 @@ export default defineConfig({
     // 3. Path resolution
     tsconfigPaths(),
   ],
+  // 4. Local Development Dev Proxies for API streams
+  server: {
+    port: 5175,
+    proxy: {
+      "/api-products": {
+        target: "https://nisilagro.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api-products/, "/products.php"),
+      },
+      "/api-locations": {
+        target: "https://nisilagro.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api-locations/, "/locations.php"),
+      },
+      "/api-order": {
+        target: "https://nisilagro.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api-order/, "/order.php"),
+      },
+    },
+  },
 });

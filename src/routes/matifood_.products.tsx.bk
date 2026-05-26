@@ -113,7 +113,7 @@ function ProductsPage() {
                   className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all hover:shadow-[var(--shadow-soft)] hover:border-primary/20"
                 >
                   <div>
-                    {/* Consistent layout aspect card wrapper */}
+                    {/* Placeholder image representation matching natural fresh aesthetics */}
                     <div className="aspect-[4/3] w-full rounded-xl bg-secondary/40 overflow-hidden flex items-center justify-center relative group-hover:scale-105 transition-transform duration-300">
                       {p.image_url ? (
                         <img 
@@ -121,12 +121,8 @@ function ProductsPage() {
                           alt={p.product_name} 
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            // Safe layout rewrite if an absolute link fails completely
-                            const target = e.target as HTMLImageElement;
-                            target.onerror = null; 
-                            if (target.parentElement) {
-                              target.parentElement.innerHTML = '<span class="text-4xl select-none">🥭</span>';
-                            }
+                            // Fallback gracefully to default emoji if image paths ever break
+                            (e.target as HTMLImageElement).style.display = "none";
                           }}
                         />
                       ) : (
@@ -251,6 +247,7 @@ function CheckoutView({ cart, cartTotal, onBack, onClearCart }: CheckoutViewProp
     setStatus({ kind: "pending" });
 
     try {
+      // Compose order summary parameters for multi-item array compatibility constraints
       const itemSummary = cart.map((i) => `${i.product.product_name} (x${i.quantity})`).join(", ");
       const totalBoxesCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -303,6 +300,7 @@ function CheckoutView({ cart, cartTotal, onBack, onClearCart }: CheckoutViewProp
         </div>
       ) : (
         <div className="mt-8 grid gap-8 lg:grid-cols-12 items-start">
+          {/* Left Hand: Fields Processing Elements */}
           <form onSubmit={onSubmit} className="lg:col-span-7 space-y-6 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
             <h2 className="font-serif text-2xl font-bold tracking-tight border-b border-border pb-3">Delivery Checkout Details</h2>
             
@@ -373,6 +371,7 @@ function CheckoutView({ cart, cartTotal, onBack, onClearCart }: CheckoutViewProp
             {status.kind === "error" && <p className="text-center text-sm font-medium text-destructive">⚠️ {status.msg}</p>}
           </form>
 
+          {/* Right Hand: Cart Summary Breakdown Panels */}
           <div className="lg:col-span-5 space-y-4 sticky top-6">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
               <h3 className="font-serif text-xl font-bold border-b border-border pb-3">Basket Review</h3>

@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { listOrders, type AdminOrder } from "@/lib/orders-admin.functions";
-import { addProductDirect } from "@/lib/products-admin.functions";
+import { addProductDirect } from "@/lib/products-admin.functions"; // 👈 Newly added implementation line
 
 export const Route = createFileRoute("/matifood_/admin")({
   head: () => ({
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/matifood_/admin")({
 function AdminPage() {
   const [password, setPassword] = useState("");
   const [authed, setAuthed] = useState(false);
-  const [currentTab, setCurrentTab] = useState<"orders" | "inventory">("orders");
+  const [currentTab, setCurrentTab] = useState<"orders" | "inventory">("orders"); // 👈 View tabs selection tracker
   
   // Orders records states
   const [orders, setOrders] = useState<AdminOrder[]>([]);
@@ -28,7 +28,7 @@ function AdminPage() {
   // New product inputs form tracking state blocks
   const [newProdName, setNewProdName] = useState("");
   const [newProdPrice, setNewProdPrice] = useState("");
-  const [newProdFile, setNewProdFile] = useState<File | null>(null); // 👈 Replaced string state with an explicit File object block
+  const [newProdImg, setNewProdImg] = useState("");
   const [prodStatus, setProdStatus] = useState<{ success: boolean; msg: string } | null>(null);
   const [prodLoading, setProdLoading] = useState(false);
 
@@ -67,11 +67,10 @@ function AdminPage() {
       return;
     }
 
-    // Pipeline execution passing data parameters match payload bindings
     const result = await addProductDirect({
       product_name: newProdName,
       price: numericPrice,
-      image_file: newProdFile // 👈 Passes the raw selected binary File metadata token cleanly
+      image_url: newProdImg.trim()
     });
 
     setProdLoading(false);
@@ -79,11 +78,7 @@ function AdminPage() {
       setProdStatus({ success: true, msg: `Success! Created new product record item with reference ID #${result.id}` });
       setNewProdName("");
       setNewProdPrice("");
-      setNewProdFile(null); // Clear active chosen file selection
-      
-      // Reset html field element manually to prevent stale value display
-      const fileInput = document.getElementById("product_file_field") as HTMLInputElement;
-      if (fileInput) fileInput.value = "";
+      setNewProdImg("");
     } else {
       setProdStatus({ success: false, msg: result.error ?? "An error occurred during submission parameters execution." });
     }
@@ -160,6 +155,7 @@ function AdminPage() {
           <Eyebrow>Admin Dashboard Operations Management</Eyebrow>
           <h1 className="mt-2 font-serif text-3xl font-bold sm:text-4xl">MatiFood Hub Control</h1>
         </div>
+        {/* Navigation Action Buttons Container tabs switcher alignment */}
         <div className="flex gap-2 rounded-xl bg-secondary/50 p-1 border border-border">
           <button
             onClick={() => setCurrentTab("orders")}
@@ -177,6 +173,7 @@ function AdminPage() {
       </div>
 
       {currentTab === "inventory" ? (
+        /* Inventory Management Interface Tab Panel view rendering */
         <div className="mt-8 mx-auto max-w-2xl animate-in fade-in slide-in-from-bottom-2 duration-200">
           <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
             <h2 className="font-serif text-2xl font-bold tracking-tight">Add New Catalogue Item</h2>
@@ -193,27 +190,13 @@ function AdminPage() {
                 <input required type="number" step="0.01" min="1" value={newProdPrice} onChange={(e) => setNewProdPrice(e.target.value)} placeholder="950.00" className={inputCls} />
               </label>
 
-              {/* Enhanced File Upload Section Container Field mapping input element changes */}
               <label className="block space-y-1.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Upload Orchard Product Photo *</span>
-                <div className="flex w-full items-center justify-center rounded-md border border-input bg-background text-sm shadow-sm transition-colors hover:border-muted-foreground/30">
-                  <input 
-                    id="product_file_field"
-                    required
-                    type="file" 
-                    accept="image/png, image/jpeg, image/jpg, image/webp"
-                    className="w-full px-3 py-2 cursor-pointer file:mr-4 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-1 file:text-xs file:font-semibold file:text-foreground hover:file:bg-muted"
-                    onChange={(e) => {
-                      const selectedFile = e.target.files?.[0] || null;
-                      setNewProdFile(selectedFile);
-                    }} 
-                  />
-                </div>
-                <p className="text-[11px] text-muted-foreground tracking-wide">Supported high-resolution formats: JPG, JPEG, PNG, or WEBP.</p>
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Display Thumbnail Image URL (Optional)</span>
+                <input type="url" value={newProdImg} onChange={(e) => setNewProdImg(e.target.value)} placeholder="https://domain.com/images/mango.jpg" className={inputCls} />
               </label>
 
               <button type="submit" disabled={prodLoading} className="w-full h-11 rounded-lg bg-primary font-semibold text-primary-foreground transition-all hover:bg-primary-glow disabled:opacity-50 shadow-md">
-                {prodLoading ? "Uploading Media Asset & Writing Records..." : "Commit & Save Product Item"}
+                {prodLoading ? "Writing Record entries..." : "Commit & Save Product Item"}
               </button>
 
               {prodStatus && (
@@ -225,6 +208,7 @@ function AdminPage() {
           </div>
         </div>
       ) : (
+        /* Standard Orders Table list operational panel layout views logic context loop */
         <div className="animate-in fade-in slide-in-from-bottom-2 duration-200">
           <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
@@ -289,7 +273,7 @@ function AdminPage() {
             </label>
           </div>
 
-          {/* Records Table View Layout */}
+          {/* Records Table View Layout panels contents implementation */}
           <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card shadow-[var(--shadow-soft)]">
             <table className="w-full text-left text-sm">
               <thead className="bg-secondary/60">
